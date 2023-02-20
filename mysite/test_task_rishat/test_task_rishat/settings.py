@@ -22,7 +22,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-$$v1-=b7es4in%gyds%)4g)a2)$kyc2jr(_krpw8h)2kgks^g@'
+SECRET_KEY = os.environ.get('SECRET_KEY', default='django-insecure-$$v1-=b7es4in%gyds%)4g)a2)$kyc2jr(_krpw8h)2kgks^g@')
 SECRET_KEY_STRIPE = 'sk_test_51MZatQHnWIQFVLjli1NUn07V6V3OKB2okI55X8VF2758wLFHF11ZkHO4Kz3aQ5ml8n69fce1Gs2msSSG3ZV5gEX900q4bDQ0uV'
 PUBLIC_KEY_STRIPE = 'pk_test_51MZatQHnWIQFVLjlwIUxIsoqvTx4500qeNDb06FbliYWXHetqcnpqz7JyHOXDjzGObdBuo41pLuzvBUu9XOMWjI800HHBaBBfw'
 DOMAIN = environ.get("DOMAIN")
@@ -30,7 +30,7 @@ DOMAIN = environ.get("DOMAIN")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = 'RENDER' not in environ
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
 
 RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
 # Application definition
@@ -138,10 +138,6 @@ if not DEBUG:    # Tell Django to copy statics to the `staticfiles` directory
     # Turn on WhiteNoise storage backend that takes care of compressing static files
     # and creating unique names for each version so they can safely be cached forever.
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static')
-]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
