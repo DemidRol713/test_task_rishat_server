@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 import os
 from pathlib import Path
 from os import environ
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -21,17 +22,17 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = environ.get("SECRET_KEY")
-SECRET_KEY_STRIPE = environ.get("SECRET_KEY_STRIPE")
-PUBLIC_KEY_STRIPE = environ.get("PUBLIC_KEY_STRIPE")
+SECRET_KEY = 'django-insecure-$$v1-=b7es4in%gyds%)4g)a2)$kyc2jr(_krpw8h)2kgks^g@'
+SECRET_KEY_STRIPE = 'sk_test_51MZatQHnWIQFVLjli1NUn07V6V3OKB2okI55X8VF2758wLFHF11ZkHO4Kz3aQ5ml8n69fce1Gs2msSSG3ZV5gEX900q4bDQ0uV'
+PUBLIC_KEY_STRIPE = 'pk_test_51MZatQHnWIQFVLjlwIUxIsoqvTx4500qeNDb06FbliYWXHetqcnpqz7JyHOXDjzGObdBuo41pLuzvBUu9XOMWjI800HHBaBBfw'
 DOMAIN = environ.get("DOMAIN")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = int(environ.get("DEBUG", default=0))
+DEBUG = 'RENDER' not in environ
 
-ALLOWED_HOSTS = environ.get("ALLOWED_HOSTS").split(' ')
+ALLOWED_HOSTS = []
 
-
+RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
 # Application definition
 
 INSTALLED_APPS = [
@@ -52,6 +53,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'test_task_rishat.urls'
@@ -91,15 +93,7 @@ WSGI_APPLICATION = 'test_task_rishat.wsgi.application'
 # }
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        "NAME": environ.get("SQL_NAME",),
-        "USER": environ.get("SQL_USER", "demidrol"),
-        "PASSWORD": environ.get("SQL_PASSWORD", "1q2w3e"),
-        "HOST": environ.get("SQL_HOST", "localhost"),
-        "PORT": environ.get("SQL_PORT", "5432"),
-    }
-}
+    'default': dj_database_url.config(default='postgres://demidrol:HJZ1xnW3nwUDTELfjt9kJaQ32KESBZyi@dpg-cfpnvdh4rebfdauj7lgg-a/test_task_rishat', conn_max_age=600)}
 
 
 # Password validation
@@ -136,7 +130,14 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+# Following settings only make sense on production and may break development environments.
+if not DEBUG:    # Tell Django to copy statics to the `staticfiles` directory
+    # in your application directory on Render.
+    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+    # Turn on WhiteNoise storage backend that takes care of compressing static files
+    # and creating unique names for each version so they can safely be cached forever.
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')

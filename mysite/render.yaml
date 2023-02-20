@@ -7,7 +7,7 @@ services:
   - type: web
     name: mysite
     env: python
-    buildCommand: "./build.sh"
+    buildCommand: "/test_task_rishat/build.sh"
     startCommand: "gunicorn test_task_rishat.wsgi:application"
     envVars:
       - key: DATABASE_URL
