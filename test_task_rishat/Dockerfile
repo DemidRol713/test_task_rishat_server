@@ -12,10 +12,10 @@ RUN pip3 install --upgrade pip
 RUN apk update \
     && apk add libpq-dev gcc
 
-COPY ./requirements.txt .
+COPY requirements.txt .
 RUN pip3 install -r ./requirements.txt
 
 # copy project
-COPY . .
+COPY test_task_rishat_1 .
 
 ENTRYPOINT ["/usr/src/test_task_rishat/entrypoint.sh"]

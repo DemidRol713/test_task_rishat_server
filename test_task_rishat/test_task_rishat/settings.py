@@ -84,7 +84,7 @@ WSGI_APPLICATION = 'test_task_rishat.wsgi.application'
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'test_task_rishat',
+#         'NAME': 'test_task_rishat_1',
 #         'USER': 'demidrol',
 #         'PASSWORD': '1q2w3e',
 #         'HOST': 'localhost',

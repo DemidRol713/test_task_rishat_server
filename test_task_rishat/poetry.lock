@@ -78,20 +78,6 @@ argon2 = ["argon2-cffi (>=19.1.0)"]
 bcrypt = ["bcrypt"]
 
 [[package]]
-name = "gunicorn"
-version = "20.1.0"
-description = "WSGI HTTP Server for UNIX"
-category = "main"
-optional = false
-python-versions = ">=3.5"
-
-[package.extras]
-eventlet = ["eventlet (>=0.24.1)"]
-gevent = ["gevent (>=1.4.0)"]
-setproctitle = ["setproctitle"]
-tornado = ["tornado (>=0.2)"]
-
-[[package]]
 name = "more-itertools"
 version = "9.0.0"
 description = "More routines for operating on iterables, beyond itertools"
@@ -197,7 +183,7 @@ brotli = ["brotli"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "05e6e0712b6e99fedaa8cdbdff910e62f00a3f8b2927767c5c59bb0b26d0b2f0"
+content-hash = "11bc828555e993df63ae5cf147e891a0af691189878a208be2a8f35b1d948fd7"
 
 [metadata.files]
 asgiref = []
@@ -207,7 +193,6 @@ brotli = []
 colorama = []
 dj-database-url = []
 django = []
-gunicorn = []
 more-itertools = []
 packaging = []
 pluggy = []

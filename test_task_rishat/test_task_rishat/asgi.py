@@ -1,5 +1,5 @@
 """
-ASGI config for test_task_rishat project.
+ASGI config for test_task_rishat_1 project.
 
 It exposes the ASGI callable as a module-level variable named ``application``.
 
@@ -11,6 +11,6 @@ import os
 
 from django.core.asgi import get_asgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'test_task_rishat.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'test_task_rishat_1.settings')
 
 application = get_asgi_application()
