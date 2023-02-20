@@ -1,0 +1,25 @@
+version: '3.10'
+services:
+  web:
+    build: ./
+    command: ./manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./:/usr/src/test_task_rishat/
+    ports:
+      - 8000:8000
+    env_file:
+      - ./.env.dev
+  db:
+    # Образ и версия базы, которую мы будем использовать
+    image: postgres:14.6-alpine
+    # Внешний том(volume) и место где он будет подключен внутри контейнера
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      # Учетные данные, которые можно будет переопределить
+      - POSTGRES_USER=demidrol
+      - POSTGRES_PASSWORD=1q2w3e
+      - POSTGRES_DB=test_task_rishat
+
+volumes:
+  postgres_data:

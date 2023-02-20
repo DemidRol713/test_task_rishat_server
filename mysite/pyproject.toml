@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "mysite"
+version = "0.1.0"
+description = ""
+authors = ["DemidRol713 <shatilov.demid@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+dj-database-url = "^1.2.0"
+psycopg2-binary = "^2.9.5"
+whitenoise = {extras = ["brotli"], version = "^6.3.0"}
+gunicorn = "^20.1.0"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
