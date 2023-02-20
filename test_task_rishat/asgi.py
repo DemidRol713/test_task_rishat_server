@@ -11,6 +11,6 @@ import os
 
 from django.core.asgi import get_asgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'test_task_rishat_1.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'test_task_rishat.settings')
 
 application = get_asgi_application()
