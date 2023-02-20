@@ -4,7 +4,7 @@ version = "0.1.0"
 description = ""
 authors = ["DemidRol713 <shatilov.demid@gmail.com>"]
 packages = [
-    { include = "stripe-python-5.2.0/steup.py" }]
+    { include = "stripe-python-5.2.0/setup.py" }]
 
 [tool.poetry.dependencies]
 python = "^3.8"
