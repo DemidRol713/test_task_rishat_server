@@ -3,9 +3,6 @@ name = "test_task_rishat"
 version = "0.1.0"
 description = ""
 authors = ["DemidRol713 <shatilov.demid@gmail.com>"]
-packages = [
-    {include ='stripe'}
-]
 
 [tool.poetry.dependencies]
 python = "^3.8"
